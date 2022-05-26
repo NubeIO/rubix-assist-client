@@ -2,8 +2,7 @@ package assist
 
 import (
 	"fmt"
-	"rubix-assist-client/rest"
-
+	"github.com/NubeIO/rubix-assist-client/rest"
 	"github.com/NubeIO/rubix-assist-model/model"
 )
 

@@ -1,4 +1,4 @@
-module rubix-assist-client
+module github.com/NubeIO/rubix-assist-client
 
 go 1.18
 
