@@ -1,4 +1,4 @@
-module ruubix-assist-client
+module rubix-assist-client
 
 go 1.18
 
