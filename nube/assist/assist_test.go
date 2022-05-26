@@ -3,6 +3,7 @@ package assist
 import (
 	"fmt"
 	"github.com/NubeIO/nubeio-rubix-lib-helpers-go/pkg/nube/nube"
+	"time"
 
 	"github.com/NubeIO/rubix-assist-client/rest"
 	"testing"
@@ -26,6 +27,34 @@ func TestRubix(*testing.T) {
 
 	client := New(restService)
 
-	_, res := client.GetHosts()
-	fmt.Println(res.AsString())
+	hosts, res := client.GetHosts()
+	uuid := ""
+	for _, host := range hosts {
+		uuid = host.UUID
+	}
+	if uuid == "" {
+		return
+	}
+	host, res := client.GetHost(uuid)
+	fmt.Println(res.GetStatus())
+	if res.GetStatus() != 200 {
+		return
+	}
+	host.Name = fmt.Sprintf("name_%d", time.Now().Unix())
+	host, res = client.AddHost(host)
+	host.Name = "get fucked_" + fmt.Sprintf("name_%d", time.Now().Unix())
+	if res.GetStatus() != 200 {
+		return
+	}
+	host, res = client.UpdateHost(host.UUID, host)
+	if res.GetStatus() != 200 {
+		return
+	}
+	fmt.Println(host.Name)
+	fmt.Println(res.GetStatus())
+	_, res = client.DeleteHost(host.UUID)
+	if res.GetStatus() != 200 {
+		return
+	}
+	fmt.Println(res.GetStatus())
 }
