@@ -3,7 +3,7 @@ package assist
 import (
 	"fmt"
 	"github.com/NubeIO/nubeio-rubix-lib-helpers-go/pkg/nube/nube"
-	"github.com/NubeIO/nubeio-rubix-lib-rest-go/pkg/rest"
+	"rubix-assist-client/rest"
 	"testing"
 )
 
