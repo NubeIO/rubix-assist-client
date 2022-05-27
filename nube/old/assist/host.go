@@ -36,6 +36,12 @@ func New(rest *rest.Service) *Client {
 	return bc
 }
 
+type Response struct {
+	StatusCode   int    `json:"status_code"`
+	ErrorMessage string `json:"error_message"`
+	Message      string `json:"message"`
+}
+
 func (inst *Client) GetHosts() (data []*model.Host, response *rest.Reply) {
 	path := fmt.Sprintf(Paths.Hosts.Path)
 	req := inst.Rest.

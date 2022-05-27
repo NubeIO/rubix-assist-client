@@ -9,7 +9,7 @@ import (
 	"testing"
 )
 
-func TestRubix(*testing.T) {
+func TestHost(*testing.T) {
 
 	restService := &rest.Service{}
 	restService.Url = "0.0.0.0"
