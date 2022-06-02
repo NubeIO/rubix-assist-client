@@ -33,11 +33,13 @@ func TestHostLocation(*testing.T) {
 	if res.GetStatus() != 200 {
 		//return
 	}
+
 	fmt.Println("NEW host", host.Name)
 	host, res = client.UpdateLocation(host.UUID, host)
 	if res.GetStatus() != 200 {
 		//return
 	}
+
 	fmt.Println(host.Name, host.UUID)
 	fmt.Println(res.GetStatus())
 	res = client.DeleteLocation(host.UUID)
@@ -45,5 +47,4 @@ func TestHostLocation(*testing.T) {
 	if res.GetStatus() != 200 {
 		//return
 	}
-
 }
