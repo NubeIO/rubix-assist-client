@@ -2,6 +2,7 @@ package assist
 
 import (
 	"fmt"
+
 	"github.com/NubeIO/rubix-assist-model/model"
 )
 
@@ -49,4 +50,12 @@ func (inst *Client) DeleteHostNetwork(uuid string) (response *Response) {
 	resp, err := inst.Rest.R().
 		Delete(path)
 	return response.buildResponse(resp, err)
+}
+func (inst *Client) GetNetworkSchema(uuid string) (data *model.NetworkSchema, response *Response) {
+	path := fmt.Sprintf("%s/%s", Paths.HostNetwork.Path, "schema")
+	response = &Response{}
+	resp, err := inst.Rest.R().
+		SetResult(&model.NetworkSchema{}).
+		Get(path)
+	return resp.Result().(*model.NetworkSchema), response.buildResponse(resp, err)
 }

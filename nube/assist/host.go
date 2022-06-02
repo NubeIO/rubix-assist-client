@@ -3,6 +3,7 @@ package assist
 import (
 	"encoding/json"
 	"fmt"
+
 	"github.com/NubeIO/rubix-assist-model/model"
 	"github.com/go-resty/resty/v2"
 )
@@ -15,10 +16,12 @@ var Paths = struct {
 	Hosts       Path
 	Ping        Path
 	HostNetwork Path
+	Location    Path
 }{
 	Hosts:       Path{Path: "/api/hosts"},
 	Ping:        Path{Path: "/api/system/ping"},
 	HostNetwork: Path{Path: "/api/networks"},
+	Location:    Path{Path: "/api/locations"},
 }
 
 type Response struct {
@@ -111,4 +114,12 @@ func (inst *Client) DeleteHost(uuid string) (response *Response) {
 	resp, err := inst.Rest.R().
 		Delete(path)
 	return response.buildResponse(resp, err)
+}
+func (inst *Client) GetHostSchema(uuid string) (data *model.HostSchema, response *Response) {
+	path := fmt.Sprintf("%s/%s", Paths.Hosts.Path, "schema")
+	response = &Response{}
+	resp, err := inst.Rest.R().
+		SetResult(&model.HostSchema{}).
+		Get(path)
+	return resp.Result().(*model.HostSchema), response.buildResponse(resp, err)
 }
