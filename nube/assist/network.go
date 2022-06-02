@@ -2,6 +2,7 @@ package assist
 
 import (
 	"fmt"
+
 	"github.com/NubeIO/rubix-assist-model/model"
 )
 

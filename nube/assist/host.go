@@ -3,6 +3,7 @@ package assist
 import (
 	"encoding/json"
 	"fmt"
+
 	"github.com/NubeIO/rubix-assist-model/model"
 	"github.com/go-resty/resty/v2"
 )
@@ -15,10 +16,12 @@ var Paths = struct {
 	Hosts       Path
 	Ping        Path
 	HostNetwork Path
+	Location    Path
 }{
 	Hosts:       Path{Path: "/api/hosts"},
 	Ping:        Path{Path: "/api/system/ping"},
 	HostNetwork: Path{Path: "/api/networks"},
+	Location:    Path{Path: "/api/locations"},
 }
 
 type Response struct {
