@@ -52,7 +52,7 @@ func (inst *Client) DeleteLocation(uuid string) (response *Response) {
 	return response.buildResponse(resp, err)
 }
 
-func (inst *Client) GetLocationSchema(uuid string) (data *model.LocationSchema, response *Response) {
+func (inst *Client) GetLocationSchema() (data *model.LocationSchema, response *Response) {
 	path := fmt.Sprintf("%s/%s", Paths.Location.Path, "schema")
 	response = &Response{}
 	resp, err := inst.Rest.R().

@@ -51,7 +51,7 @@ func (inst *Client) DeleteHostNetwork(uuid string) (response *Response) {
 		Delete(path)
 	return response.buildResponse(resp, err)
 }
-func (inst *Client) GetNetworkSchema(uuid string) (data *model.NetworkSchema, response *Response) {
+func (inst *Client) GetNetworkSchema() (data *model.NetworkSchema, response *Response) {
 	path := fmt.Sprintf("%s/%s", Paths.HostNetwork.Path, "schema")
 	response = &Response{}
 	resp, err := inst.Rest.R().

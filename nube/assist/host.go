@@ -115,7 +115,7 @@ func (inst *Client) DeleteHost(uuid string) (response *Response) {
 		Delete(path)
 	return response.buildResponse(resp, err)
 }
-func (inst *Client) GetHostSchema(uuid string) (data *model.HostSchema, response *Response) {
+func (inst *Client) GetHostSchema() (data *model.HostSchema, response *Response) {
 	path := fmt.Sprintf("%s/%s", Paths.Hosts.Path, "schema")
 	response = &Response{}
 	resp, err := inst.Rest.R().
