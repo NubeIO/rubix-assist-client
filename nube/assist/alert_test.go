@@ -4,46 +4,35 @@ import (
 	"fmt"
 	"testing"
 	"time"
+
+	"github.com/NubeIO/rubix-assist-model/model"
 )
 
 func TestAlert(*testing.T) {
-
 	client := New("0.0.0.0", 8080)
 
-	hosts, _ := client.GetHostNetworks()
-	fmt.Println(222, hosts)
-	uuid := ""
-	fmt.Println(hosts)
-	for _, host := range hosts {
-		uuid = host.UUID
-	}
-	if uuid == "" {
-		return
-	}
+	alertModel := &model.Alert{From: "test_TEST", HostUUID: "hos_B0376FCF5F11", Host: "", AlertType: "system_ping", Count: 34, Date: time.Now()}
+	alertModelChanged := &model.Alert{From: "test_CHANGED", HostUUID: "hos_B0376FCF5F11", Host: "", AlertType: "system_ping", Count: 34, Date: time.Now()}
 
-	host, res := client.GetHostNetwork(uuid)
-	fmt.Println(res.StatusCode)
-	if res.StatusCode != 200 {
-		//return
-	}
-	fmt.Println(host)
-	host.Name = fmt.Sprintf("name_%d", time.Now().Unix())
-	host, res = client.AddHostNetwork(host)
-	host.Name = "get fucked_" + fmt.Sprintf("name_%d", time.Now().Unix())
-	if res.GetStatus() != 200 {
-		//return
-	}
-	fmt.Println("NEW host", host.Name)
-	host, res = client.UpdateHostNetwork(host.UUID, host)
-	if res.GetStatus() != 200 {
-		//return
-	}
-	fmt.Println(host.Name, host.UUID)
-	fmt.Println(res.GetStatus())
-	res = client.DeleteHostNetwork(host.UUID)
-	fmt.Println(res.Message)
-	if res.GetStatus() != 200 {
-		//return
-	}
+	fmt.Println("\nTesting AddAlert function:")
+	aa, r := client.AddAlert(alertModel)
+	fmt.Println(aa)
+	fmt.Println(r)
+
+	fmt.Println("\nTesting UpdateAlert function:")
+	ua, r := client.UpdateAlert(aa.UUID, alertModelChanged)
+	fmt.Println(ua)
+
+	fmt.Println("\nTesting GetAlert function:")
+	ga, r := client.GetAlert(aa.UUID)
+	fmt.Println(ga)
+
+	fmt.Println("\nTesting getAlerts function:")
+	gaa, r := client.GetAlerts()
+	fmt.Println(gaa)
+
+	fmt.Println("\nTesting DeleteAlert function:")
+	da := client.DeleteAlert(aa.UUID)
+	fmt.Println(da)
 
 }
