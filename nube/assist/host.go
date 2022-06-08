@@ -17,11 +17,13 @@ var Paths = struct {
 	Ping        Path
 	HostNetwork Path
 	Location    Path
+	Users       Path
 }{
 	Hosts:       Path{Path: "/api/hosts"},
 	Ping:        Path{Path: "/api/system/ping"},
 	HostNetwork: Path{Path: "/api/networks"},
 	Location:    Path{Path: "/api/locations"},
+	Users:       Path{Path: "/api/locations"},
 }
 
 type Response struct {
