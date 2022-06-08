@@ -31,7 +31,7 @@ func TestTransaction(*testing.T) {
 	fmt.Println(gaa)
 
 	fmt.Println("\nTesting DeleteAlert function:")
-	da := client.DeleteAlert(aa.UUID)
+	da := client.DeleteAlert(at.UUID)
 	fmt.Println(da)
 
 }
