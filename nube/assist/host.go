@@ -13,17 +13,21 @@ type Path struct {
 }
 
 var Paths = struct {
-	Hosts       Path
-	Ping        Path
-	HostNetwork Path
-	Location    Path
-	Users       Path
+	Hosts        Path
+	Ping         Path
+	HostNetwork  Path
+	Location     Path
+	Users        Path
+	Transactions Path
+	Alerts       Path
 }{
-	Hosts:       Path{Path: "/api/hosts"},
-	Ping:        Path{Path: "/api/system/ping"},
-	HostNetwork: Path{Path: "/api/networks"},
-	Location:    Path{Path: "/api/locations"},
-	Users:       Path{Path: "/api/locations"},
+	Hosts:        Path{Path: "/api/hosts"},
+	Ping:         Path{Path: "/api/system/ping"},
+	HostNetwork:  Path{Path: "/api/networks"},
+	Location:     Path{Path: "/api/locations"},
+	Users:        Path{Path: "/api/locations"},
+	Transactions: Path{Path: "/api/transactions"},
+	Alerts:       Path{Path: "/api/alerts"},
 }
 
 type Response struct {
